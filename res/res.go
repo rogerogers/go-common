@@ -1,9 +1,9 @@
-package response
+package res
 
 type Res struct {
 	Data         interface{} `json:"data"`
 	Success      bool        `json:"success"`
-	ErrorCode    string      `json:"errorCode,omitempty"`
+	ErrorCode    int         `json:"errorCode,omitempty"`
 	ErrorMessage string      `json:"errorMessage,omitempty"`
 	ShowType     int         `json:"showType,omitempty"`
 	TraceId      string      `json:"traceId,omitempty"`
@@ -13,7 +13,7 @@ type Res struct {
 	Current      int         `json:"current,omitempty"`
 }
 
-func ErrorRes(code string, message string) (res *Res) {
+func ErrorRes(code int, message string) (res *Res) {
 	Res := Res{
 		Success:      false,
 		ErrorCode:    code,
