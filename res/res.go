@@ -1,6 +1,6 @@
 package res
 
-type Res struct {
+type res struct {
 	Data         interface{} `json:"data"`
 	Success      bool        `json:"success"`
 	ErrorCode    int         `json:"errorCode,omitempty"`
@@ -13,31 +13,28 @@ type Res struct {
 	Current      int         `json:"current,omitempty"`
 }
 
-func ErrorRes(code int, message string) (res *Res) {
-	Res := Res{
-		Success:      false,
-		ErrorCode:    code,
-		ErrorMessage: message,
-	}
-	return &Res
+func NewRes() *res {
+	return &res{}
 }
 
-func SuccessRes(data interface{}) (res *Res) {
-	Res := Res{
-		Data:    data,
-		Success: true,
-	}
-	return &Res
+func (r *res) ErrorRes(code int, message string) (res *res) {
+	r.Success = false
+	r.ErrorCode = code
+	r.ErrorMessage = message
+	return r
 }
 
-func ListRes(data interface{}, total int, pageSize int, current int) (res *Res) {
+func (r *res) SuccessRes(data interface{}) (res *res) {
+	r.Data = data
+	r.Success = true
+	return r
+}
 
-	Res := Res{
-		Data:     data,
-		Total:    total,
-		PageSize: pageSize,
-		Current:  current,
-		Success:  true,
-	}
-	return &Res
+func (r *res) ListRes(data interface{}, total int, pageSize int, current int) (res *res) {
+	r.Data = data
+	r.Total = total
+	r.PageSize = pageSize
+	r.Current = current
+	r.Success = true
+	return res
 }

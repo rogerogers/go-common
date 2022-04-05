@@ -2,14 +2,14 @@ package res
 
 import "net/http"
 
-func UnAuth() *Res {
-	return ErrorRes(http.StatusUnauthorized, http.StatusText(http.StatusUnauthorized))
+func UnAuth() *res {
+	return NewRes().ErrorRes(http.StatusUnauthorized, http.StatusText(http.StatusUnauthorized))
 }
 
-func PermissionDeny() *Res {
-	return ErrorRes(http.StatusForbidden, http.StatusText(http.StatusForbidden))
+func PermissionDeny() *res {
+	return NewRes().ErrorRes(http.StatusForbidden, http.StatusText(http.StatusForbidden))
 }
 
-func ServerError() *Res {
-	return ErrorRes(http.StatusInternalServerError, http.StatusText(http.StatusInternalServerError))
+func ServerError() *res {
+	return NewRes().ErrorRes(http.StatusInternalServerError, http.StatusText(http.StatusInternalServerError))
 }
